@@ -62,8 +62,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/setButton"
-        android:layout_toStartOf="@+id/sunImage"
-        android:layout_toLeftOf="@+id/sunImage" />
+        android:layout_toStartOf="@+id/dpRight"
+        android:layout_toLeftOf="@+id/dpRight" />
 
     <view
         android:layout_width="wrap_content"

@@ -20,6 +20,10 @@
             android:name=".DayChoseActivity"
             android:label="@string/title_activity_day_chose" >
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

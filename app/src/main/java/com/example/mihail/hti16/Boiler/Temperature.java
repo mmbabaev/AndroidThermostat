@@ -34,6 +34,16 @@ public class Temperature implements Comparable<Temperature> {
 
     @Override
     public String toString() {
-        return Double.toString(value).substring(0,4);
+        try {
+            return Double.toString(round()).substring(0, 4);
+        } catch (Exception e) {
+            return Double.toString(round());
+        }
+    }
+
+    private double round() {
+        int res =(int) ( value * 1000);
+        res+=1;
+        return (double)res/1000;
     }
 }

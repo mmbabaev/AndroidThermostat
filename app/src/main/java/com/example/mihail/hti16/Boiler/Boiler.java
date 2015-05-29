@@ -16,8 +16,8 @@ public class Boiler {
     Date nextChange;
     boolean temperatureOverriding;
     TimeTable timeTable;
-    private final Temperature DAY_TEMPERATURE = new Temperature(20);
-    private final Temperature NIGHT_TEMPERATURE = new Temperature(15);
+    private final Temperature DAY_TEMPERATURE = new Temperature(30);
+    private final Temperature NIGHT_TEMPERATURE = new Temperature(10);
 
     DayOfWeek curDay;
     Date curTime;
@@ -53,9 +53,9 @@ public class Boiler {
     }
 
     public void setTargetTemperature(Temperature target) {
-
-        this.targetTemperature = target;
         temperatureOverriding = true;
+        this.targetTemperature = target;
+
     }
 
     public void stop() {
@@ -83,10 +83,10 @@ public class Boiler {
                     int j = 5;
                 }
                 if(this.timeTable.getTemperatureMode(curDay,curTime)) {
-              //      this.targetTemperature = this.DAY_TEMPERATURE;
+                    this.targetTemperature = this.DAY_TEMPERATURE;
                 }
                 else {
-              //      this.targetTemperature = this.NIGHT_TEMPERATURE;
+                   this.targetTemperature = this.NIGHT_TEMPERATURE;
                 }
                 heating();
             }

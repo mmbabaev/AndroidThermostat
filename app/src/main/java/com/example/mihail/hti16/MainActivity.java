@@ -26,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
     ImageView sunImage;
     ImageView semimoonImage;
     ImageButton calendarButton;
+    ImageButton settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +37,13 @@ public class MainActivity extends ActionBarActivity {
         sunImage = (ImageView)findViewById(R.id.sunImage);
         semimoonImage = (ImageView)findViewById(R.id.semimoonImage);
 
+
         TimeTable timeTable = new TimeTable();
 
-        timeTable.addSpan(DayOfWeek.WEDNESDAY, correctTime(12, 0, 0), correctTime(12, 30, 30));
-        timeTable.addSpan(DayOfWeek.WEDNESDAY, correctTime(13, 0, 0), correctTime(13, 30, 30));
+        timeTable.addSpan(DayOfWeek.FRIDAY, correctTime(19, 0, 0), correctTime(19, 30, 30));
+        timeTable.addSpan(DayOfWeek.FRIDAY, correctTime(20, 0, 0), correctTime(20, 30, 30));
 
-        final Boiler boiler = new Boiler(new Temperature(18.5), BoilerMode.NORMAL_MODE,timeTable);
+        final Boiler boiler = new Boiler(new Temperature(18.5), BoilerMode.TEST_MODE,timeTable);
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -98,6 +100,14 @@ public class MainActivity extends ActionBarActivity {
                 showDayChooseActivity();
             }
         });
+
+        settingsButton = (ImageButton)findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSettingsActivity();
+            }
+        });
     }
 
     @Override
@@ -152,6 +162,12 @@ public class MainActivity extends ActionBarActivity {
 
     public void showDayChooseActivity() {
         Intent intent = new Intent(this, DayChoseActivity.class);
+
+        startActivity(intent);
+    }
+
+    public void showSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
 
         startActivity(intent);
     }
