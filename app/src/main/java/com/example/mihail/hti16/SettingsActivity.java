@@ -48,7 +48,7 @@ public class SettingsActivity extends ActionBarActivity {
                             .setMessage("Fields can't be empty!")
 
                             .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                 }
@@ -61,7 +61,11 @@ public class SettingsActivity extends ActionBarActivity {
                     new AlertDialog.Builder(activity)
                             .setTitle("Error!")
                             .setMessage("Temperature must be equal or higher than 5 °C")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            })
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                     return;
@@ -71,7 +75,11 @@ public class SettingsActivity extends ActionBarActivity {
                     new AlertDialog.Builder(activity)
                             .setTitle("Error!")
                             .setMessage("Temperature must be less than 31 °C")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            })
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                     return;
