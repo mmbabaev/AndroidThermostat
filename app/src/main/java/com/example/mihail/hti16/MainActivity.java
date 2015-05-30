@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mihail.hti16.Boiler.Boiler;
-import com.example.mihail.hti16.Boiler.BoilerMode;
 import com.example.mihail.hti16.Boiler.DayOfWeek;
+import com.example.mihail.hti16.Boiler.Storage;
 import com.example.mihail.hti16.Boiler.Temperature;
 import com.example.mihail.hti16.Boiler.TimeTable;
 
@@ -23,8 +23,7 @@ import java.util.Date;
 public class MainActivity extends ActionBarActivity {
 
     TextView currentTemperatureTextView;
-    ImageView sunImage;
-    ImageView semimoonImage;
+    ImageView topImage;
     ImageButton calendarButton;
     ImageButton settingsButton;
 
@@ -34,8 +33,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         currentTemperatureTextView = (TextView)findViewById(R.id.textView);
-        sunImage = (ImageView)findViewById(R.id.sunImage);
-        semimoonImage = (ImageView)findViewById(R.id.semimoonImage);
+        topImage = (ImageView)findViewById(R.id.topImage);
 
 
         TimeTable timeTable = new TimeTable();
@@ -43,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
         timeTable.addSpan(DayOfWeek.FRIDAY, correctTime(19, 0, 0), correctTime(19, 30, 30));
         timeTable.addSpan(DayOfWeek.FRIDAY, correctTime(20, 0, 0), correctTime(20, 30, 30));
 
-        final Boiler boiler = Boiler.INSTANCE;
+        final Boiler boiler = Storage.boiler;
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -61,15 +59,10 @@ public class MainActivity extends ActionBarActivity {
 
         final DataPicker dpLeft = (DataPicker)findViewById(R.id.dpLeft);
         final DataPicker dpRight = (DataPicker)findViewById(R.id.dpRight);
-        String [] leftValues = new String[31];
-        for (int i = 0; i < 31; i++) {
-            if (i < 10) {
-                leftValues[i] = "";
-            }
-            else {
-                leftValues[i] = "";
-            }
-            leftValues[i] += Integer.toString(i);
+        String [] leftValues = new String[26];
+        for (int i = 5; i < 31; i++) {
+
+            leftValues[i - 5] = Integer.toString(i) + " ";
         }
 
         String [] rightValues = new String[10];
@@ -147,15 +140,15 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void run() {
                     if (boiler.isDayTemperature()) {
-                        sunImage.setVisibility(View.VISIBLE);
-                        semimoonImage.setVisibility(View.INVISIBLE);
+                        int id = getResources().getIdentifier("sun", "drawable", getPackageName());
+                        topImage.setImageResource(id);
                     }
                     else {
-                        sunImage.setVisibility(View.INVISIBLE);
-                        semimoonImage.setVisibility(View.VISIBLE);
+                        int id = getResources().getIdentifier("semimoon", "drawable", getPackageName());
+                        topImage.setImageResource(id);
                     }
 
-                    currentTemperatureTextView.setText(boiler.getCurrentTemperature().toString() + "°C");
+                    currentTemperatureTextView.setText(boiler.getCurrentTemperature().toString() + " °C");
                 }
             });
         }
