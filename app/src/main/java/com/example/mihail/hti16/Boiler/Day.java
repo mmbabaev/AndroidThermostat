@@ -1,6 +1,7 @@
 package com.example.mihail.hti16.Boiler;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +70,12 @@ public class Day {
         return  false;
     }
 
-
+    public ArrayList<String> getGroup() {
+        ArrayList<String> res = new ArrayList<>();
+        for (int i = 0; i < spans.size(); i++) {
+            res.add(spans.get(i).toString());
+        }
+        return res;
+    }
 
 }

@@ -55,4 +55,8 @@ public enum DayOfWeek {
         }
         return ENUMS[dayOfWeek - 1];
     }
+
+    public static String at(int i) {
+        return ENUMS[i].toString();
+    }
 }

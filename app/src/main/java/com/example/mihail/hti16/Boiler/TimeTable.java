@@ -39,4 +39,12 @@ public class TimeTable {
     public Time getNextChangeTime(DayOfWeek day,Time curTime) {
        return week.get(day.getValue()-1).getNextChangeTime(curTime);
     }
+
+    public ArrayList<ArrayList<String>> getGroups() {
+        ArrayList<ArrayList<String>> res = new ArrayList<ArrayList<String>>();
+        for(int i = 0; i < week.size();i++){
+            res.add(week.get(i).getGroup());
+        }
+        return res;
+    }
 }

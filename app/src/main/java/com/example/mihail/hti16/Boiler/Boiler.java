@@ -17,7 +17,7 @@ public class Boiler {
     boolean temperatureChanging;
     Time nextChange;
     public boolean temperatureOverriding;
-    TimeTable timeTable;
+    public TimeTable timeTable;
     private Temperature DAY_TEMPERATURE = new Temperature(30);
     private Temperature NIGHT_TEMPERATURE = new Temperature(10);
     Thread thread;
@@ -32,8 +32,8 @@ public class Boiler {
         this.mode = boilerMode;
         TimeTable table = new TimeTable();
 
-        table.addSpan(DayOfWeek.SATURDAY, correctTime(17, 0, 0), correctTime(17, 30, 30));
-        table.addSpan(DayOfWeek.SATURDAY, correctTime(17, 40, 0), correctTime(18, 00, 30));
+        table.addSpan(DayOfWeek.SATURDAY, correctTime(21, 0, 0), correctTime(21, 30, 30));
+        table.addSpan(DayOfWeek.SATURDAY, correctTime(22, 40, 0), correctTime(23, 00, 30));
 
         this.timeTable = table;
         int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);

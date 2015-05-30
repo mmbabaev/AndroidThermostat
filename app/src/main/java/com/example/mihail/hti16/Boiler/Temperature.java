@@ -66,4 +66,6 @@ public class Temperature implements Comparable<Temperature> {
         res+=1;
         return (double)res/1000;
     }
+
+
 }
