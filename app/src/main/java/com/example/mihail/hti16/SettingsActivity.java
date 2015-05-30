@@ -6,20 +6,36 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.mihail.hti16.Boiler.Boiler;
 
 
 public class SettingsActivity extends ActionBarActivity {
+
+    final Boiler boiler = Boiler.INSTANCE;
+    EditText dayEditText;
+    EditText nightEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        dayEditText = (EditText)findViewById(R.id.dayEditText);
+        nightEditText = (EditText)findViewById(R.id.nightEditText);
+
+        dayEditText.setText(Double.toString(boiler.getDayTemperature()));
+        nightEditText.setText(Double.toString(boiler.getNightTemperature()));
+
         Button saveButton = (Button)findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int i = 0;
+                boiler.setDayTemperature(Double.parseDouble(dayEditText.getText().toString()));
+                boiler.setNightTemperature(Double.parseDouble(nightEditText.getText().toString()));
+
+                finish();
             }
         });
     }

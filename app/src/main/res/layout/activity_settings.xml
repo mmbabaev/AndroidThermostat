@@ -32,9 +32,10 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/nightTextView"
+        android:id="@+id/nightEditText"
+        android:textSize="45sp"
         android:layout_alignBottom="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
         android:layout_toLeftOf="@+id/textView4"
@@ -47,7 +48,7 @@
         android:text="°C"
         android:textSize="45sp"
         android:id="@+id/textView4"
-        android:layout_alignBottom="@+id/nightTextView"
+        android:layout_alignBottom="@+id/nightEditText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -86,12 +87,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/dayEditText"
+        android:textSize="45sp"
         android:layout_alignBottom="@+id/textView7"
-        android:layout_alignRight="@+id/nightTextView"
-        android:layout_alignEnd="@+id/nightTextView"
+        android:layout_alignRight="@+id/nightEditText"
+        android:layout_alignEnd="@+id/nightEditText"
         android:layout_toRightOf="@+id/textView3"
         android:layout_toEndOf="@+id/textView3" />
 

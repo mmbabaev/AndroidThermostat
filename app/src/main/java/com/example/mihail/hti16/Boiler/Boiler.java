@@ -8,6 +8,8 @@ import java.util.Date;
  * Created by Юрий on 21.05.2015.
  */
 public class Boiler {
+    public static final Boiler INSTANCE = new Boiler(new Temperature(18.5), BoilerMode.TEST_MODE);
+
     private Temperature currentTemperature;
     private Temperature targetTemperature;
     public boolean working;
@@ -16,17 +18,50 @@ public class Boiler {
     Date nextChange;
     boolean temperatureOverriding;
     TimeTable timeTable;
-    private final Temperature DAY_TEMPERATURE = new Temperature(30);
-    private final Temperature NIGHT_TEMPERATURE = new Temperature(10);
+    private Temperature DAY_TEMPERATURE = new Temperature(30);
+    private Temperature NIGHT_TEMPERATURE = new Temperature(10);
 
     DayOfWeek curDay;
     Date curTime;
+
  //   private final Temperature OUTDOAR_TEMPERATURE = new Temperature(18);
+    public Boiler(Temperature startTemperature, int boilerMode) {
+        this.currentTemperature = startTemperature;
+        this.targetTemperature = startTemperature;
+        this.working = true;
+        this.mode = boilerMode;
+        TimeTable table = new TimeTable();
+
+        table.addSpan(DayOfWeek.FRIDAY, correctTime(19, 0, 0), correctTime(19, 30, 30));
+        table.addSpan(DayOfWeek.FRIDAY, correctTime(20, 0, 0), correctTime(20, 30, 30));
+
+        this.timeTable = table;
+        int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        day--;
+        if(day == 0) {
+            day = 7;
+        }
+        this.curDay = DayOfWeek.of(day);
+        this.curTime = new Date(Calendar.getInstance().getTimeInMillis());
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    work();
+                } catch (InterruptedException e) {
+
+                }
+            }
+        });
+        thread.start();
+    }
+
     public Boiler(Temperature startTemperature, int boilerMode,TimeTable timeTable) {
         this.currentTemperature = startTemperature;
         this.targetTemperature = startTemperature;
         this.working = true;
         this.mode = boilerMode;
+
         this.timeTable = timeTable;
         int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         day--;
@@ -47,6 +82,8 @@ public class Boiler {
         });
         thread.start();
     }
+
+
 
     public Temperature getCurrentTemperature() {
         return currentTemperature;
@@ -83,10 +120,10 @@ public class Boiler {
                     int j = 5;
                 }
                 if(this.timeTable.getTemperatureMode(curDay,curTime)) {
-                    this.targetTemperature = this.DAY_TEMPERATURE;
+                  //  this.targetTemperature = this.DAY_TEMPERATURE;
                 }
                 else {
-                   this.targetTemperature = this.NIGHT_TEMPERATURE;
+                  // this.targetTemperature = this.NIGHT_TEMPERATURE;
                 }
                 heating();
             }
@@ -124,5 +161,29 @@ public class Boiler {
 
     public boolean isDayTemperature() {
         return this.timeTable.getTemperatureMode(curDay,curTime);
+    }
+
+    public Date correctTime(int hour,int minute,int seconds) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR,hour);
+        calendar.set(Calendar.MINUTE,minute);
+        calendar.set(Calendar.SECOND, seconds);
+        return calendar.getTime();
+    }
+
+    public void setDayTemperature(double value) {
+        DAY_TEMPERATURE = new Temperature(value);
+    }
+
+    public void setNightTemperature(double value) {
+        NIGHT_TEMPERATURE = new Temperature(value);
+    }
+
+    public double getDayTemperature() {
+        return DAY_TEMPERATURE.getValue();
+    }
+
+    public double getNightTemperature() {
+        return NIGHT_TEMPERATURE.getValue();
     }
 }

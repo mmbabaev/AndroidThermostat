@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
         timeTable.addSpan(DayOfWeek.FRIDAY, correctTime(19, 0, 0), correctTime(19, 30, 30));
         timeTable.addSpan(DayOfWeek.FRIDAY, correctTime(20, 0, 0), correctTime(20, 30, 30));
 
-        final Boiler boiler = new Boiler(new Temperature(18.5), BoilerMode.TEST_MODE,timeTable);
+        final Boiler boiler = Boiler.INSTANCE;
 
         Thread thread = new Thread(new Runnable() {
             @Override
