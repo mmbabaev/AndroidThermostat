@@ -50,7 +50,7 @@
         android:text="0"
         android:textSize = "45sp"
         android:id="@+id/textView"
-        android:layout_below="@+id/sunImage"
+        android:layout_below="@+id/topImage"
         android:layout_centerHorizontal="true" />
 
     <view
@@ -71,9 +71,9 @@
         class="com.example.mihail.hti16.DataPicker"
         android:id="@+id/dpRight"
         android:layout_alignTop="@+id/dpLeft"
-        android:layout_toEndOf="@+id/sunImage"
+        android:layout_toEndOf="@+id/topImage"
         android:layout_above="@+id/setButton"
-        android:layout_toRightOf="@+id/sunImage" />
+        android:layout_toRightOf="@+id/topImage" />
 
 
 
@@ -84,18 +84,7 @@
         android:padding="1dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:id="@+id/sunImage"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/sun"
-        android:padding="1dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:id="@+id/semimoonImage"
+        android:id="@+id/topImage"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 

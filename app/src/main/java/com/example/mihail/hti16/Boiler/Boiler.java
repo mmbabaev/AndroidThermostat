@@ -8,7 +8,6 @@ import java.util.Date;
  * Created by Юрий on 21.05.2015.
  */
 public class Boiler {
-    public static final Boiler INSTANCE = new Boiler(new Temperature(18.5), BoilerMode.TEST_MODE);
 
     private Temperature currentTemperature;
     private Temperature targetTemperature;
@@ -32,7 +31,7 @@ public class Boiler {
         this.mode = boilerMode;
         TimeTable table = new TimeTable();
 
-        table.addSpan(DayOfWeek.FRIDAY, correctTime(19, 0, 0), correctTime(19, 30, 30));
+        table.addSpan(DayOfWeek.SATURDAY, correctTime(16, 0, 0), correctTime(16, 18, 30));
         table.addSpan(DayOfWeek.FRIDAY, correctTime(20, 0, 0), correctTime(20, 30, 30));
 
         this.timeTable = table;

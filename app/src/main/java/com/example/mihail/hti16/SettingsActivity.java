@@ -1,5 +1,7 @@
 package com.example.mihail.hti16;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,13 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.mihail.hti16.Boiler.Boiler;
+import com.example.mihail.hti16.Boiler.Storage;
 
 
 public class SettingsActivity extends ActionBarActivity {
 
-    final Boiler boiler = Boiler.INSTANCE;
+    final Boiler boiler = Storage.boiler;
     EditText dayEditText;
     EditText nightEditText;
+    SettingsActivity activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +36,48 @@ public class SettingsActivity extends ActionBarActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boiler.setDayTemperature(Double.parseDouble(dayEditText.getText().toString()));
-                boiler.setNightTemperature(Double.parseDouble(nightEditText.getText().toString()));
+                double day;
+                double night;
+                try {
+                    day = Double.parseDouble(dayEditText.getText().toString());
+                    night = Double.parseDouble(nightEditText.getText().toString());
+                }
+                catch(Exception e) {
+                    new AlertDialog.Builder(activity)
+                            .setTitle("Error!")
+                            .setMessage("Fields can't be empty!")
+
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .show();
+                    return;
+                }
+
+                if (day < 5 || night < 5) {
+                    new AlertDialog.Builder(activity)
+                            .setTitle("Error!")
+                            .setMessage("Temperature must be equal or higher than 5 °C")
+
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    return;
+                }
+
+                if (day > 31 || night > 31) {
+                    new AlertDialog.Builder(activity)
+                            .setTitle("Error!")
+                            .setMessage("Temperature must be less than 31 °C")
+
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    return;
+                }
+                boiler.setDayTemperature(day);
+                boiler.setNightTemperature(night);
 
                 finish();
             }
