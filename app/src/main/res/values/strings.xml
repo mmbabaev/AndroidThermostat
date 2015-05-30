@@ -6,4 +6,5 @@
     <string name="title_activity_day_chose">DayChoseActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_settings2">Settings2Activity</string>
+    <string name="title_activity_time_table_shower">TimeTableShowerActivity</string>
 </resources>

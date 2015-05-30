@@ -16,7 +16,7 @@ public class Boiler {
     boolean temperatureChanging;
     Time nextChange;
     public boolean temperatureOverriding;
-    TimeTable timeTable;
+    public TimeTable timeTable;
     private Temperature DAY_TEMPERATURE = new Temperature(20);
     private Temperature NIGHT_TEMPERATURE = new Temperature(10);
     Thread thread;

@@ -169,7 +169,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void showDayChooseActivity() {
-        Intent intent = new Intent(this, DayChoseActivity.class);
+        Intent intent = new Intent(this, TimeTableShowerActivity.class);
 
         startActivity(intent);
     }
