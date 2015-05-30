@@ -1,7 +1,6 @@
 package com.example.mihail.hti16.Boiler;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +21,7 @@ public class TimeTable {
         changed = true;
     }
 
-    public void addSpan(DayOfWeek day, Date start,Date end ) {
+    public void addSpan(DayOfWeek day, Time start,Time end ) {
         week.get(day.getValue()-1).addSpan(new TimeSpan(start,end));
         changed = true;
     }
@@ -33,11 +32,11 @@ public class TimeTable {
      Если вернул true день
      false - ночь
      */
-    public boolean getTemperatureMode(DayOfWeek day,Date curTime) {
+    public boolean getTemperatureMode(DayOfWeek day,Time curTime) {
         return week.get(day.getValue()-1).getTemperatureMode(curTime);
     }
 
-    public Date getNextChangeTime(DayOfWeek day,Date curTime) {
+    public Time getNextChangeTime(DayOfWeek day,Time curTime) {
        return week.get(day.getValue()-1).getNextChangeTime(curTime);
     }
 }

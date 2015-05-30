@@ -152,5 +152,6 @@
             android:layout_alignLeft="@+id/checkBox6"
             android:layout_alignStart="@+id/checkBox6"
             android:layout_marginTop="4dp" />
+
     </RelativeLayout>
 </RelativeLayout>

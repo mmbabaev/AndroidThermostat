@@ -15,10 +15,9 @@ import com.example.mihail.hti16.Boiler.Boiler;
 import com.example.mihail.hti16.Boiler.DayOfWeek;
 import com.example.mihail.hti16.Boiler.Storage;
 import com.example.mihail.hti16.Boiler.Temperature;
+import com.example.mihail.hti16.Boiler.Time;
 import com.example.mihail.hti16.Boiler.TimeTable;
 
-import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -125,17 +124,14 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public Date correctTime(int hour,int minute,int seconds) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR,hour);
-        calendar.set(Calendar.MINUTE,minute);
-        calendar.set(Calendar.SECOND, seconds);
-        return calendar.getTime();
+    public Time correctTime(int hour,int minute,int seconds) {
+        return new Time(hour, minute, seconds);
     }
 
     public void listenTemp(final Boiler boiler) throws InterruptedException {
         while (boiler.working) {
             Thread.sleep(1000);
+            System.out.println("Current temperature  " + boiler.getCurrentTemperature() + "  current Time " +  boiler.curTime.toString() + "   current day   " + boiler.curDay + " current mode: " + boiler.isDayTemperature());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
