@@ -1,8 +1,7 @@
 package com.example.mihail.hti16.Boiler;
 
-import java.sql.Time;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,7 +24,7 @@ public class Day {
         spans.add(span);
     }
 
-    public void addSpan(Date start, Date end) {
+    public void addSpan(Time start, Time end) {
         if(spans.size()>=5) {
             return;
         }
@@ -38,7 +37,7 @@ public class Day {
 
 
 
-    public Date getNextChangeTime(Date curTime) {
+    public Time getNextChangeTime(Time curTime) {
         TimeSpan curSpan;
         for (int i = 0; i < spans.size(); i++) {
             curSpan = spans.get(i);
@@ -50,13 +49,13 @@ public class Day {
                 return curSpan.end;
             }
         }
-        return new Date(23,59,59);
+        return new Time(23,59,59);
     }
     /**
      Если вернул true день
      false - ночь
      */
-    public boolean getTemperatureMode(Date curTime) {
+    public boolean getTemperatureMode(Time curTime) {
         TimeSpan curSpan;
         for (int i = 0; i < spans.size(); i++) {
             curSpan = spans.get(i);
@@ -68,38 +67,8 @@ public class Day {
             }
         }
         return  false;
-
-
     }
 
-    private int compareIgnoreYear(Date a,Date b){
-       if(a.getHours()>b.getHours()) {
-           return 1;
-       }
-       if(a.getHours()<b.getHours()) {
-           return -1;
-       }
-       if(a.getHours()==b.getHours()) {
-           if(a.getMinutes()>b.getMinutes()) {
-               return 1;
-           }
-           if(a.getMinutes()<b.getMinutes()) {
-               return -1;
-           }
 
-           if(a.getMinutes() == b.getMinutes()) {
-               if(a.getSeconds()>b.getSeconds()) {
-                   return 1;
-               }
-               if(a.getSeconds()<b.getSeconds()) {
-                   return -1;
-               }
 
-               if(a.getSeconds() == b.getSeconds()) {
-                   return 0;
-               }
-           }
-       }
-       return  0;
-     }
 }
