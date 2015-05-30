@@ -8,7 +8,6 @@ import java.util.Calendar;
  * Created by Юрий on 21.05.2015.
  */
 public class Boiler {
-    public static final Boiler INSTANCE = new Boiler(new Temperature(18.5), BoilerMode.TEST_MODE);
 
     private Temperature currentTemperature;
     private Temperature targetTemperature;
@@ -18,9 +17,12 @@ public class Boiler {
     Time nextChange;
     public boolean temperatureOverriding;
     TimeTable timeTable;
-    private Temperature DAY_TEMPERATURE = new Temperature(30);
+    private Temperature DAY_TEMPERATURE = new Temperature(20);
     private Temperature NIGHT_TEMPERATURE = new Temperature(10);
     Thread thread;
+    public boolean isOnVacation = false;
+    public boolean isUseTimeTable =true;
+
  public    DayOfWeek curDay;
   public   Time curTime;
 
@@ -102,6 +104,11 @@ public class Boiler {
     private void work() throws InterruptedException {
         while (this.working) {
             stopAndIncreaseTime();
+            if (isOnVacation) {
+                this.targetTemperature = this.NIGHT_TEMPERATURE;
+                continue;
+            }
+
             if (temperatureOverriding) {
                 heating();
                 if (nextChange == null) {
@@ -109,7 +116,9 @@ public class Boiler {
                 }
                 if (curTime.compareTo(nextChange) >= 0) {
                     nextChange = null;
-                    this.temperatureOverriding = false;
+                    if (isUseTimeTable) {
+                        this.temperatureOverriding = false;
+                    }
                 }
             } else {
                 //Работа по расписанию

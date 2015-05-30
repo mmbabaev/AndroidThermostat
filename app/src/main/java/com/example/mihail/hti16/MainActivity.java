@@ -12,14 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mihail.hti16.Boiler.Boiler;
-import com.example.mihail.hti16.Boiler.DayOfWeek;
 import com.example.mihail.hti16.Boiler.Storage;
 import com.example.mihail.hti16.Boiler.Temperature;
 import com.example.mihail.hti16.Boiler.Time;
-import com.example.mihail.hti16.Boiler.TimeTable;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    Button setButton;
+    DataPicker dpLeft;
+    DataPicker dpRight;
 
     TextView currentTemperatureTextView;
     ImageView topImage;
@@ -50,11 +52,11 @@ public class MainActivity extends ActionBarActivity {
         thread.start();
 
 
+        dpLeft = (DataPicker)findViewById(R.id.dpLeft);
+        dpRight = (DataPicker)findViewById(R.id.dpRight);
 
-        final DataPicker dpLeft = (DataPicker)findViewById(R.id.dpLeft);
-        final DataPicker dpRight = (DataPicker)findViewById(R.id.dpRight);
-        String [] leftValues = new String[26];
-        for (int i = 5; i < 31; i++) {
+        String [] leftValues = new String[25];
+        for (int i = 5; i < 30; i++) {
 
             leftValues[i - 5] = Integer.toString(i) + " ";
         }
@@ -69,7 +71,7 @@ public class MainActivity extends ActionBarActivity {
         dpRight.setValues(rightValues);
 
 
-        Button setButton = (Button)findViewById(R.id.setButton);
+        setButton = (Button)findViewById(R.id.setButton);
         setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,11 +128,26 @@ public class MainActivity extends ActionBarActivity {
 
     public void listenTemp(final Boiler boiler) throws InterruptedException {
         while (boiler.working) {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             System.out.println("Current temperature  " + boiler.getCurrentTemperature() + "  current Time " +  boiler.curTime.toString() + "   current day   " + boiler.curDay + " current mode: " + boiler.isDayTemperature());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    if (boiler.isOnVacation) {
+                        setButton.setEnabled(false);
+                        dpLeft.setEnabled(false);
+                        dpRight.setEnabled(false);
+                        calendarButton.setEnabled(false);
+                        topImage.setVisibility(View.VISIBLE);
+                        int id = getResources().getIdentifier("vacation", "drawable", getPackageName());
+                        topImage.setImageResource(id);
+                        return;
+                    }
+                    setButton.setEnabled(true);
+                    dpLeft.setEnabled(true);
+                    dpRight.setEnabled(true);
+                    calendarButton.setEnabled(true);
+
                     if (boiler.temperatureOverriding == false) {
                         topImage.setVisibility(View.VISIBLE);
                         if (boiler.isDayTemperature()) {

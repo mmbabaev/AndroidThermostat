@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.example.mihail.hti16.Boiler.Boiler;
 import com.example.mihail.hti16.Boiler.Storage;
@@ -19,6 +20,9 @@ public class SettingsActivity extends ActionBarActivity {
     final Boiler boiler = Storage.boiler;
     EditText dayEditText;
     EditText nightEditText;
+    Switch timeTableSwitch;
+    Switch vacationSwitch;
+
     SettingsActivity activity = this;
 
     @Override
@@ -28,9 +32,15 @@ public class SettingsActivity extends ActionBarActivity {
 
         dayEditText = (EditText)findViewById(R.id.dayEditText);
         nightEditText = (EditText)findViewById(R.id.nightEditText);
+        timeTableSwitch = (Switch)findViewById(R.id.switch2);
+        vacationSwitch = (Switch)findViewById(R.id.switch1);
+
 
         dayEditText.setText(Double.toString(boiler.getDayTemperature()));
         nightEditText.setText(Double.toString(boiler.getNightTemperature()));
+
+        timeTableSwitch.setChecked(boiler.isUseTimeTable);
+        vacationSwitch.setChecked(boiler.isOnVacation);
 
         Button saveButton = (Button)findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -71,10 +81,10 @@ public class SettingsActivity extends ActionBarActivity {
                     return;
                 }
 
-                if (day > 31 || night > 31) {
+                if (day >= 30 || night >= 30) {
                     new AlertDialog.Builder(activity)
                             .setTitle("Error!")
-                            .setMessage("Temperature must be less than 31 °C")
+                            .setMessage("Temperature must be less than 30 °C")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -86,6 +96,9 @@ public class SettingsActivity extends ActionBarActivity {
                 }
                 boiler.setDayTemperature(day);
                 boiler.setNightTemperature(night);
+                boiler.isUseTimeTable = timeTableSwitch.isChecked();
+                boiler.isOnVacation = vacationSwitch.isChecked();
+
 
                 finish();
             }
