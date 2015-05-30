@@ -35,11 +35,6 @@ public class MainActivity extends ActionBarActivity {
         topImage = (ImageView)findViewById(R.id.topImage);
 
 
-        TimeTable timeTable = new TimeTable();
-
-        timeTable.addSpan(DayOfWeek.FRIDAY, correctTime(19, 0, 0), correctTime(19, 30, 30));
-        timeTable.addSpan(DayOfWeek.FRIDAY, correctTime(20, 0, 0), correctTime(20, 30, 30));
-
         final Boiler boiler = Storage.boiler;
 
         Thread thread = new Thread(new Runnable() {
@@ -82,6 +77,7 @@ public class MainActivity extends ActionBarActivity {
                 temperatureValue += 0.1 * Double.parseDouble(dpRight.getValue());
 
                 boiler.setTargetTemperature(new Temperature(temperatureValue));
+                topImage.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -130,18 +126,23 @@ public class MainActivity extends ActionBarActivity {
 
     public void listenTemp(final Boiler boiler) throws InterruptedException {
         while (boiler.working) {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
             System.out.println("Current temperature  " + boiler.getCurrentTemperature() + "  current Time " +  boiler.curTime.toString() + "   current day   " + boiler.curDay + " current mode: " + boiler.isDayTemperature());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (boiler.isDayTemperature()) {
-                        int id = getResources().getIdentifier("sun", "drawable", getPackageName());
-                        topImage.setImageResource(id);
+                    if (boiler.temperatureOverriding == false) {
+                        topImage.setVisibility(View.VISIBLE);
+                        if (boiler.isDayTemperature()) {
+                            int id = getResources().getIdentifier("sun", "drawable", getPackageName());
+                            topImage.setImageResource(id);
+                        } else {
+                            int id = getResources().getIdentifier("semimoon", "drawable", getPackageName());
+                            topImage.setImageResource(id);
+                        }
                     }
                     else {
-                        int id = getResources().getIdentifier("semimoon", "drawable", getPackageName());
-                        topImage.setImageResource(id);
+                        topImage.setVisibility(View.INVISIBLE);
                     }
 
                     currentTemperatureTextView.setText(boiler.getCurrentTemperature().toString() + " °C");

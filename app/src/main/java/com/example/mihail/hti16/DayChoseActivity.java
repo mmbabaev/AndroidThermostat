@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.example.mihail.hti16.Boiler.DayOfWeek;
+import com.example.mihail.hti16.Boiler.Storage;
 
 import java.util.ArrayList;
 import java.util.List;

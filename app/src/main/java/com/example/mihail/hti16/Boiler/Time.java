@@ -2,7 +2,7 @@ package com.example.mihail.hti16.Boiler;
 
 import java.util.Date;
 /**
- * Created by ёрий on 30.05.2015.
+ * Created by on 30.05.2015.
  */
 public class Time {
     int hour;
