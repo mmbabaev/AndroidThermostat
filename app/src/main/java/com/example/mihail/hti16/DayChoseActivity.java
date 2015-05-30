@@ -4,6 +4,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
+
+import com.example.mihail.hti16.Boiler.DayOfWeek;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DayChoseActivity extends ActionBarActivity {
@@ -35,4 +42,38 @@ public class DayChoseActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void onSetButton(View view) {
+        List<DayOfWeek> result = new ArrayList<>();
+        if (((CheckBox) findViewById(R.id.checkBox)).isChecked()) {
+            result.add(DayOfWeek.MONDAY);
+        }
+        if (((CheckBox) findViewById(R.id.checkBox2)).isChecked()) {
+            result.add(DayOfWeek.TUESDAY);
+        }
+        if (((CheckBox) findViewById(R.id.checkBox3)).isChecked()) {
+            result.add(DayOfWeek.WEDNESDAY);
+        }
+        if (((CheckBox) findViewById(R.id.checkBox4)).isChecked()) {
+            result.add(DayOfWeek.THURSDAY);
+        }
+        if (((CheckBox) findViewById(R.id.checkBox5)).isChecked()) {
+            result.add(DayOfWeek.FRIDAY);
+        }
+        if (((CheckBox) findViewById(R.id.checkBox6)).isChecked()) {
+            result.add(DayOfWeek.SATURDAY);
+        }
+        if (((CheckBox) findViewById(R.id.checkBox7)).isChecked()) {
+            result.add(DayOfWeek.SUNDAY);
+        }
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println(result.get(i));
+        }
+    }
+
+
 }
+
+
+
+

@@ -26,7 +26,8 @@
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
         style="@style/Theme.AppCompat.Light.DarkActionBar"
-        android:singleLine="false" />
+        android:singleLine="false"
+        android:onClick="onSetButton" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,7 +39,7 @@
 
         <CheckBox
             android:layout_width="200dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:text="Monday"
             android:id="@+id/checkBox"
             android:background="@drawable/customborder"
@@ -48,32 +49,15 @@
             android:textSize="20dp"
             android:textStyle="normal"
             style="@style/AppTheme"
-            android:layout_below="@+id/checkBox4"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="41dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
         <CheckBox
             android:layout_width="200dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:text="Tuesday"
             android:id="@+id/checkBox2"
-            android:background="@drawable/customborder"
-            android:checked="false"
-            android:enabled="true"
-            android:clickable="true"
-            android:textSize="20dp"
-            android:textStyle="normal"
-            style="@style/AppTheme"
-            android:layout_marginTop="47dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/checkBox4"
-            android:layout_alignStart="@+id/checkBox4" />
-
-        <CheckBox
-            android:layout_width="200dp"
-            android:layout_height="45dp"
-            android:text="Wednesday"
-            android:id="@+id/checkBox3"
             android:background="@drawable/customborder"
             android:checked="false"
             android:enabled="true"
@@ -87,7 +71,24 @@
 
         <CheckBox
             android:layout_width="200dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:text="Wednesday"
+            android:id="@+id/checkBox3"
+            android:background="@drawable/customborder"
+            android:checked="false"
+            android:enabled="true"
+            android:clickable="true"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            style="@style/AppTheme"
+            android:layout_below="@+id/checkBox2"
+            android:layout_alignLeft="@+id/checkBox2"
+            android:layout_alignStart="@+id/checkBox2"
+            android:layout_marginTop="4dp" />
+
+        <CheckBox
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:text="Thursday"
             android:id="@+id/checkBox4"
             android:background="@drawable/customborder"
@@ -97,13 +98,14 @@
             android:textSize="20dp"
             android:textStyle="normal"
             style="@style/AppTheme"
-            android:layout_below="@+id/checkBox2"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/checkBox3"
+            android:layout_alignLeft="@+id/checkBox3"
+            android:layout_alignStart="@+id/checkBox3"
             android:layout_marginTop="4dp" />
 
         <CheckBox
             android:layout_width="200dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:text="Friday"
             android:id="@+id/checkBox5"
             android:background="@drawable/customborder"
@@ -113,13 +115,13 @@
             android:textSize="20dp"
             android:textStyle="normal"
             style="@style/AppTheme"
-            android:layout_below="@+id/checkBox6"
+            android:layout_below="@+id/checkBox4"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp" />
 
         <CheckBox
             android:layout_width="200dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:text="Saturday"
             android:id="@+id/checkBox6"
             android:background="@drawable/customborder"
@@ -129,13 +131,14 @@
             android:textSize="20dp"
             android:textStyle="normal"
             style="@style/AppTheme"
-            android:layout_below="@+id/checkBox3"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/checkBox5"
+            android:layout_alignLeft="@+id/checkBox5"
+            android:layout_alignStart="@+id/checkBox5"
             android:layout_marginTop="4dp" />
 
         <CheckBox
             android:layout_width="200dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:text="Sunday"
             android:id="@+id/checkBox7"
             android:background="@drawable/customborder"
@@ -145,8 +148,9 @@
             android:textSize="20dp"
             android:textStyle="normal"
             style="@style/AppTheme"
-            android:layout_below="@+id/checkBox5"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/checkBox6"
+            android:layout_alignLeft="@+id/checkBox6"
+            android:layout_alignStart="@+id/checkBox6"
             android:layout_marginTop="4dp" />
     </RelativeLayout>
 </RelativeLayout>
