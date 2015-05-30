@@ -1,8 +1,8 @@
 package com.example.mihail.hti16.Boiler;
 
-import java.sql.Time;
+
 import java.util.Calendar;
-import java.util.Date;
+
 
 /**
  * Created by Юрий on 21.05.2015.
@@ -15,16 +15,16 @@ public class Boiler {
     public boolean working;
     int mode;
     boolean temperatureChanging;
-    Date nextChange;
+    Time nextChange;
     boolean temperatureOverriding;
     TimeTable timeTable;
     private Temperature DAY_TEMPERATURE = new Temperature(30);
     private Temperature NIGHT_TEMPERATURE = new Temperature(10);
+    Thread thread;
+ public    DayOfWeek curDay;
+  public   Time curTime;
 
-    DayOfWeek curDay;
-    Date curTime;
-
- //   private final Temperature OUTDOAR_TEMPERATURE = new Temperature(18);
+    //   private final Temperature OUTDOAR_TEMPERATURE = new Temperature(18);
     public Boiler(Temperature startTemperature, int boilerMode) {
         this.currentTemperature = startTemperature;
         this.targetTemperature = startTemperature;
@@ -32,17 +32,18 @@ public class Boiler {
         this.mode = boilerMode;
         TimeTable table = new TimeTable();
 
-        table.addSpan(DayOfWeek.FRIDAY, correctTime(19, 0, 0), correctTime(19, 30, 30));
-        table.addSpan(DayOfWeek.FRIDAY, correctTime(20, 0, 0), correctTime(20, 30, 30));
+        table.addSpan(DayOfWeek.SATURDAY, correctTime(20, 0, 0), correctTime(20, 30, 30));
+        table.addSpan(DayOfWeek.SATURDAY, correctTime(21, 0, 0), correctTime(21, 30, 30));
 
         this.timeTable = table;
         int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         day--;
-        if(day == 0) {
+        if (day == 0) {
             day = 7;
         }
         this.curDay = DayOfWeek.of(day);
-        this.curTime = new Date(Calendar.getInstance().getTimeInMillis());
+
+        this.curTime = new Time(Calendar.getInstance().getTime());
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -56,7 +57,7 @@ public class Boiler {
         thread.start();
     }
 
-    public Boiler(Temperature startTemperature, int boilerMode,TimeTable timeTable) {
+    public Boiler(Temperature startTemperature, int boilerMode, TimeTable timeTable) {
         this.currentTemperature = startTemperature;
         this.targetTemperature = startTemperature;
         this.working = true;
@@ -65,12 +66,12 @@ public class Boiler {
         this.timeTable = timeTable;
         int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         day--;
-        if(day == 0) {
+        if (day == 0) {
             day = 7;
         }
         this.curDay = DayOfWeek.of(day);
-        this.curTime = new Date(Calendar.getInstance().getTimeInMillis());
-        Thread thread = new Thread(new Runnable() {
+        this.curTime = new Time(Calendar.getInstance().getTime());
+        this.thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -82,7 +83,6 @@ public class Boiler {
         });
         thread.start();
     }
-
 
 
     public Temperature getCurrentTemperature() {
@@ -92,7 +92,6 @@ public class Boiler {
     public void setTargetTemperature(Temperature target) {
         temperatureOverriding = true;
         this.targetTemperature = target;
-
     }
 
     public void stop() {
@@ -100,30 +99,24 @@ public class Boiler {
     }
 
 
-
     private void work() throws InterruptedException {
-        while(this.working) {
+        while (this.working) {
             stopAndIncreaseTime();
-            if(temperatureOverriding) {
+            if (temperatureOverriding) {
                 heating();
                 if (nextChange == null) {
                     nextChange = timeTable.getNextChangeTime(curDay, curTime);
                 }
-                if(curTime.compareTo(nextChange) >=0 ) {
+                if (curTime.compareTo(nextChange) >= 0) {
                     nextChange = null;
                     this.temperatureOverriding = false;
                 }
-            }
-            else {
+            } else {
                 //Работа по расписанию
-                if(curTime.getHours()==12 ) {
-                    int j = 5;
-                }
-                if(this.timeTable.getTemperatureMode(curDay,curTime)) {
-                  //  this.targetTemperature = this.DAY_TEMPERATURE;
-                }
-                else {
-                  // this.targetTemperature = this.NIGHT_TEMPERATURE;
+                if (this.timeTable.getTemperatureMode(curDay, curTime)) {
+                    this.targetTemperature = this.DAY_TEMPERATURE;
+                } else {
+                    this.targetTemperature = this.NIGHT_TEMPERATURE;
                 }
                 heating();
             }
@@ -150,25 +143,21 @@ public class Boiler {
             return;
         }
     }
+
     private void stopAndIncreaseTime() throws InterruptedException {
         Thread.currentThread().sleep(mode);
-        if(curTime.getHours() == 23 && curTime.getMinutes() == 59 && curTime.getSeconds() == 59)
-        {
-            curDay = DayOfWeek.of(((curDay.getValue()+1)<=7 ? curDay.getValue()+1:(curDay.getValue()+1)%7));
+        if (curTime.getHours() == 23 && curTime.getMinutes() == 59 && curTime.getSeconds() == 59) {
+            curDay = DayOfWeek.of(((curDay.getValue() + 1) <= 7 ? curDay.getValue() + 1 : (curDay.getValue() + 1) % 7));
         }
-        curTime.setTime(curTime.getTime()+1000);
+        curTime.increment();
     }
 
     public boolean isDayTemperature() {
-        return this.timeTable.getTemperatureMode(curDay,curTime);
+        return this.timeTable.getTemperatureMode(curDay, curTime);
     }
 
-    public Date correctTime(int hour,int minute,int seconds) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR,hour);
-        calendar.set(Calendar.MINUTE,minute);
-        calendar.set(Calendar.SECOND, seconds);
-        return calendar.getTime();
+    public Time correctTime(int hour, int minute, int seconds) {
+        return new Time(hour, minute, seconds);
     }
 
     public void setDayTemperature(double value) {
