@@ -1,5 +1,6 @@
 package com.example.mihail.hti16;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -66,9 +67,11 @@ public class DayChoseActivity extends ActionBarActivity {
         if (((CheckBox) findViewById(R.id.checkBox7)).isChecked()) {
             result.add(DayOfWeek.SUNDAY);
         }
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(result.get(i));
-        }
+        Storage.chosenDays = result;
+
+      //  Intent intent = new Intent(this, SettingsActivity.class);
+
+     //   startActivity(intent);
     }
 
 
