@@ -139,9 +139,10 @@ public class MainActivity extends ActionBarActivity {
         calendar.set(Calendar.SECOND, seconds);
         return calendar.getTime();
     }
+
     public void listenTemp(final Boiler boiler) throws InterruptedException {
         while (boiler.working) {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

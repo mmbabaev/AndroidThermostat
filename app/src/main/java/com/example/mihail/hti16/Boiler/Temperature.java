@@ -21,7 +21,22 @@ public class Temperature implements Comparable<Temperature> {
 
     @Override
     public int compareTo(Temperature o) {
-        return Double.compare(this.value,o.value);
+        if (Math.abs(this.round()-o.round()) <= 0.1) {
+            this.value = o.value;
+            return 0;
+        }
+        else
+        {
+            if(this.value> o.value)
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
     }
 
     public void decrease() {
@@ -34,11 +49,16 @@ public class Temperature implements Comparable<Temperature> {
 
     @Override
     public String toString() {
-        try {
-            return Double.toString(round()).substring(0, 4);
-        } catch (Exception e) {
-            return Double.toString(round());
-        }
+        String res = "";
+        String in = Double.toString(this.value);
+        int i =0;
+        do  {
+            res += in.charAt(i);
+            i++;
+        }while(in.charAt(i) != '.');
+        res += in.charAt(i);
+        res += in.charAt(i+1);
+        return  res;
     }
 
     private double round() {
