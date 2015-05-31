@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -126,7 +127,9 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
                 public void onClick(View view) {
 
                     DayOfWeek day = DayOfWeek.of(pos);
-                    TimeTableShowerActivity.showAddTimeAlert(day);
+                    ArrayList<DayOfWeek> ar= new ArrayList<DayOfWeek>();
+                    ar.add(day);
+                    TimeTableShowerActivity.showAddTimeAlert(ar);
 
                 }
 
@@ -140,9 +143,6 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    public void update() {
-        notifyDataSetChanged();
-    }
 
 
     public void setNewContext(ArrayList<ArrayList<String>> cont) {

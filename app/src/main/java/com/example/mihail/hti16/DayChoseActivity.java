@@ -59,7 +59,7 @@ public class DayChoseActivity extends ActionBarActivity {
     }
 
     public void onSetButton(View view) {
-        List<DayOfWeek> result = new ArrayList<>();
+        ArrayList<DayOfWeek> result = new ArrayList<>();
         if (((CheckBox) findViewById(R.id.checkBox)).isChecked()) {
             result.add(DayOfWeek.MONDAY);
         }
@@ -83,7 +83,7 @@ public class DayChoseActivity extends ActionBarActivity {
         }
         Storage.chosenDays = result;
 
- 
+        TimeTableShowerActivity.showAddTimeAlert(result);
     }
 
 

@@ -86,7 +86,7 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void showAddTimeAlert(final DayOfWeek day) {
+    public static void showAddTimeAlert(final ArrayList<DayOfWeek> days) {
         LinearLayout horizontal1 = new LinearLayout(activity);
         LinearLayout horizontal2 = new LinearLayout(activity);
 
@@ -149,17 +149,18 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         .setTitle("Add")
         .setView(vertical)
         .setCancelable(true)
-                .setPositiveButton("OK",  new DialogInterface.OnClickListener() {
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-            public void onClick(DialogInterface dialog, int id) {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                Time t1 = new Time(picker.getCurrentHour(), picker.getCurrentMinute(), 0);
-                Time t2 = new Time(picker2.getCurrentHour(), picker2.getCurrentMinute(), 0);
-
-                Storage.boiler.timeTable.addSpan(day, t1, t2);
-                Storage.adapter.setNewContext(Storage.boiler.timeTable.getGroups());
-            }
-        })
+                        Time t1 = new Time(picker.getCurrentHour(), picker.getCurrentMinute(), 0);
+                        Time t2 = new Time(picker2.getCurrentHour(), picker2.getCurrentMinute(), 0);
+                        for (int i = 0; i < days.size(); i++) {
+                            Storage.boiler.timeTable.addSpan(days.get(i), t1, t2);
+                        }
+                        Storage.adapter.setNewContext(Storage.boiler.timeTable.getGroups());
+                    }
+                })
 
         .show();
     }
