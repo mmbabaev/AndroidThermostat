@@ -15,6 +15,6 @@ public class TimeSpan {
 
     @Override
     public String toString() {
-       return start.toString()+ "-" + end.toString();
+       return start.toString()+ " - " + end.toString();
     }
 }

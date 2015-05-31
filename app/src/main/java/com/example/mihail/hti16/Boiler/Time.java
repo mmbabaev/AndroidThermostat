@@ -66,7 +66,25 @@ public class Time {
 
     @Override
     public String toString() {
-        return hour+ ":" + minute+ ":"+seconds;
+        String h = Integer.toString(hour);
+
+        if(h.length()==1) {
+            h = '0'+ h;
+        }
+
+        String m = Integer.toString(minute);
+
+        if(m.length() == 1) {
+            m = '0' + m;
+        }
+
+        String s = Integer.toString(seconds);
+
+        if(s.length()==1) {
+            s = '0' + s;
+        }
+
+        return h+ ":" + m+ ":"+s;
     }
 
     public int compareTo(Time b) {
