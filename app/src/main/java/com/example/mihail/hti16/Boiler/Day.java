@@ -3,6 +3,7 @@ package com.example.mihail.hti16.Boiler;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,10 +20,20 @@ public class Day {
     }
 
     public void addSpan(TimeSpan span) {
+        for (int i = 0; i < spans.size() ; i++) {
+            if(spans.get(i).merge(span)) {
+                return;
+            }
+        }
         if(spans.size()>=5) {
             return;
         }
         spans.add(span);
+        sort();
+    }
+
+    public void sort() {
+        Collections.sort(spans);
     }
 
     public void addSpan(Time start, Time end) {
