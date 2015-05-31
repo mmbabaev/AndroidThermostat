@@ -42,11 +42,11 @@ public class Temperature implements Comparable<Temperature>, Serializable {
     }
 
     public void decrease() {
-        value = value - 0.0005;
+        value = value - 0.005;
     }
 
     public void increase() {
-        value = value + 0.001;
+        value = value + 0.01;
     }
 
     @Override

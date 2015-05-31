@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mihail.hti16.Boiler.Boiler;
 import com.example.mihail.hti16.Boiler.Storage;
@@ -47,8 +48,8 @@ public class MainActivity extends ActionBarActivity {
 
         Storage.PATH = getApplicationContext().getFilesDir().getAbsolutePath();
         Storage.PACKAGE_NAME = getPackageName();
+
         final Boiler boiler = Storage.boiler;
-                Storage.getBoiler();
 
 
 
@@ -147,7 +148,30 @@ public class MainActivity extends ActionBarActivity {
                 @Override
                 public void run() {
                     TextView time = (TextView)findViewById(R.id.timeText);
-                    time.setText(boiler.curTime.getHours() + ":" + boiler.curTime.getMinutes());
+                    String s = boiler.curTime.getHours() + ":";
+                    if (boiler.curTime.getMinutes() <= 9) {
+                        s += "0";
+                    }
+                    String day = "";
+                    switch (boiler.curDay.getValue()) {
+                        case 1: day = "Monday";
+                            break;
+                        case 2: day = "Tuesday";
+                            break;
+                        case 3: day = "Wednesday";
+                            break;
+                        case 4: day = "Thursday";
+                            break;
+                        case 5: day = "Friday";
+                            break;
+                        case 6: day = "Saturday";
+                            break;
+                        case 7: day = "Sunday";
+                            break;
+
+                    }
+                    s += boiler.curTime.getMinutes() + ", " + day;
+                    time.setText(s);
 
                     if (boiler.isOnVacation) {
                         setButton.setEnabled(false);

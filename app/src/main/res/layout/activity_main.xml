@@ -180,8 +180,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="time"
-        android:textSize="45sp"
+        android:text="timetimetime"
+        android:textSize="30sp"
         android:id="@+id/timeText"
         android:layout_below="@+id/topImage"
         android:layout_centerHorizontal="true" />
