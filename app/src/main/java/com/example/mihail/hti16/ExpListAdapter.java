@@ -93,6 +93,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
         TextView textChild = (TextView) convertView.findViewById(R.id.textChild);
         final  Button button = (Button)convertView.findViewById(R.id.buttonChild);
+<<<<<<< Updated upstream
         textChild.setText(mGroups.get(groupPosition).get(childPosition));
         if(childPosition+1 < this.getChildrenCount(groupPosition)) {
             convertView.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +116,20 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
             });
         }
+=======
+
+
+
+        textChild.setText(mGroups.get(groupPosition).get(childPosition));
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               button.setVisibility(View.VISIBLE);
+
+            }
+
+        });
+>>>>>>> Stashed changes
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
