@@ -103,7 +103,8 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ExpListAdapter.this.mGroups.get(0).add("FUCK");
+                // REMOVE ElEMENT
+
                 notifyDataSetChanged();
                 Toast.makeText(mContext, "button is pressed", Toast.LENGTH_LONG).show();
             }
