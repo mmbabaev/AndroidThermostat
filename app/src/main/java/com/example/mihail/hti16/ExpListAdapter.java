@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,10 +69,10 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
         }
 
         if (isExpanded){
-            //Изменяем что-нибудь, если текущая Group раскрыта
+
         }
         else{
-            //Изменяем что-нибудь, если текущая Group скрыта
+
         }
 
         TextView textGroup = (TextView) convertView.findViewById(R.id.textGroup);
@@ -91,6 +92,8 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
         TextView textChild = (TextView) convertView.findViewById(R.id.textChild);
         final  Button button = (Button)convertView.findViewById(R.id.buttonChild);
+        
+
         textChild.setText(mGroups.get(groupPosition).get(childPosition));
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
