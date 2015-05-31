@@ -1,13 +1,14 @@
 package com.example.mihail.hti16.Boiler;
 
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 
 /**
  * Created by Юрий on 21.05.2015.
  */
-public class Boiler {
+public class Boiler implements Serializable {
 
     private Temperature currentTemperature;
     private Temperature targetTemperature;

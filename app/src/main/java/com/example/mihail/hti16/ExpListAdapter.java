@@ -85,7 +85,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
+    public View getChildView(int groupPosition, final int childPosition, boolean isLastChild,
                              View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -116,10 +116,13 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
             textChild.setTextColor(Color.RED);
             textChild.setTextSize(20);
             image.setVisibility(View.INVISIBLE);
+            final int pos = groupPosition + 1;
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   Toast.makeText(mContext,"ADD WILL BE INPLEMENTER",Toast.LENGTH_LONG).show();
+
+                    DayOfWeek day = DayOfWeek.of(pos);
+                    TimeTableShowerActivity.showAddTimeAlert(day);
                 }
 
             });

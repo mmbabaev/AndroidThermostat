@@ -1,9 +1,11 @@
 package com.example.mihail.hti16.Boiler;
 
+import java.io.Serializable;
+
 /**
  * Created by Юрий on 21.05.2015.
  */
-public class Temperature implements Comparable<Temperature> {
+public class Temperature implements Comparable<Temperature>, Serializable {
     double value;
 
     public Temperature(double value) {

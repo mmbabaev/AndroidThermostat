@@ -1,12 +1,13 @@
 package com.example.mihail.hti16.Boiler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Юрий on 26.05.2015.
  */
-public class TimeTable {
+public class TimeTable implements Serializable {
     List<Day> week = new ArrayList<Day>();
 
     boolean changed = false;

@@ -1,6 +1,7 @@
 package com.example.mihail.hti16.Boiler;
 
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * Храним только дневные промежутки
  */
-public class Day {
+public class Day implements Serializable {
     private List<TimeSpan> spans = new ArrayList<TimeSpan>();
     DayOfWeek dayOfWeek;
 

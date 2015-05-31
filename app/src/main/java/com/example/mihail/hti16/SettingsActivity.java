@@ -51,8 +51,7 @@ public class SettingsActivity extends ActionBarActivity {
                 try {
                     day = Double.parseDouble(dayEditText.getText().toString());
                     night = Double.parseDouble(nightEditText.getText().toString());
-                }
-                catch(Exception e) {
+                } catch (Exception e) {
                     new AlertDialog.Builder(activity)
                             .setTitle("Error!")
                             .setMessage("Fields can't be empty!")
@@ -94,10 +93,13 @@ public class SettingsActivity extends ActionBarActivity {
                             .show();
                     return;
                 }
+
+
                 boiler.setDayTemperature(day);
                 boiler.setNightTemperature(night);
                 boiler.isUseTimeTable = timeTableSwitch.isChecked();
                 boiler.isOnVacation = vacationSwitch.isChecked();
+
 
 
                 finish();
@@ -126,4 +128,6 @@ public class SettingsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

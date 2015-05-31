@@ -47,10 +47,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="0"
+        android:text="temper"
         android:textSize = "45sp"
         android:id="@+id/textView"
-        android:layout_below="@+id/topImage"
+        android:layout_below="@+id/timeText"
         android:layout_centerHorizontal="true" />
 
     <view
@@ -174,5 +174,15 @@
         android:layout_marginRight="-7dp"
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="time"
+        android:textSize="45sp"
+        android:id="@+id/timeText"
+        android:layout_below="@+id/topImage"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

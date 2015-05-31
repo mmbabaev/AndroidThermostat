@@ -1,10 +1,12 @@
 package com.example.mihail.hti16.Boiler;
 
 
+import java.io.Serializable;
+
 /**
  * Created by Юрий on 26.05.2015.
  */
-public class TimeSpan implements Comparable {
+public class TimeSpan implements Comparable, Serializable {
     Time start;
     Time end;
 

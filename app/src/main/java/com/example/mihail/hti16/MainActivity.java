@@ -1,8 +1,10 @@
 package com.example.mihail.hti16;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,11 @@ import com.example.mihail.hti16.Boiler.Storage;
 import com.example.mihail.hti16.Boiler.Temperature;
 import com.example.mihail.hti16.Boiler.Time;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -28,6 +35,8 @@ public class MainActivity extends ActionBarActivity {
     ImageButton calendarButton;
     ImageButton settingsButton;
 
+    SharedPreferences sPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +45,12 @@ public class MainActivity extends ActionBarActivity {
         currentTemperatureTextView = (TextView)findViewById(R.id.textView);
         topImage = (ImageView)findViewById(R.id.topImage);
 
+        Storage.PATH = getApplicationContext().getFilesDir().getAbsolutePath();
         Storage.PACKAGE_NAME = getPackageName();
         final Boiler boiler = Storage.boiler;
+                Storage.getBoiler();
+
+
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -133,6 +146,9 @@ public class MainActivity extends ActionBarActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    TextView time = (TextView)findViewById(R.id.timeText);
+                    time.setText(boiler.curTime.getHours() + ":" + boiler.curTime.getMinutes());
+
                     if (boiler.isOnVacation) {
                         setButton.setEnabled(false);
                         dpLeft.setEnabled(false);
@@ -179,4 +195,15 @@ public class MainActivity extends ActionBarActivity {
 
         startActivity(intent);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Log.d("MyLog", "onDestroy()");
+
+        Storage.saveBoiler();
+    }
+
+
 }

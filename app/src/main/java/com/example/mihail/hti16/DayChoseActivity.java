@@ -30,8 +30,7 @@ public class DayChoseActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 if (!switcher2.isChecked()) {
-                    Intent intent = new Intent(DayChoseActivity.this, TimeTableShowerActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -88,7 +87,6 @@ public class DayChoseActivity extends ActionBarActivity {
 
      //   startActivity(intent);
     }
-
 
 }
 
