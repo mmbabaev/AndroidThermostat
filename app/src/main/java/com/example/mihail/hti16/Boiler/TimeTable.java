@@ -27,7 +27,9 @@ public class TimeTable implements Serializable {
         changed = true;
     }
 
-
+    public void remove(int day, int inedx) {
+        week.get(day).remove(inedx);
+    }
 
     /**
      Если вернул true день

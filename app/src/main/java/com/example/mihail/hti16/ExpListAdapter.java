@@ -87,7 +87,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition, boolean isLastChild,
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild,
                              View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -135,6 +135,15 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
             });
         }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Storage.boiler.timeTable.remove(groupPosition,childPosition);
+                ExpListAdapter.this.setNewContext(Storage.boiler.timeTable.getGroups());
+                button.setVisibility(View.INVISIBLE);
+            }
+        });
 
 
 

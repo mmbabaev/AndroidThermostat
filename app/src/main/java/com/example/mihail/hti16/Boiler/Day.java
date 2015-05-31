@@ -82,6 +82,9 @@ public class Day implements Serializable {
         return  false;
     }
 
+    public void remove(int index) {
+        this.spans.remove(index);
+    }
     public ArrayList<String> getGroup() {
         ArrayList<String> res = new ArrayList<>();
         for (int i = 0; i < spans.size(); i++) {
