@@ -183,6 +183,7 @@ public class MainActivity extends ActionBarActivity {
                         topImage.setVisibility(View.VISIBLE);
                         int id = getResources().getIdentifier("vacation", "drawable", getPackageName());
                         topImage.setImageResource(id);
+                        currentTemperatureTextView.setText(boiler.getCurrentTemperature().toString() + " °C");
                         return;
                     }
                     setButton.setEnabled(true);

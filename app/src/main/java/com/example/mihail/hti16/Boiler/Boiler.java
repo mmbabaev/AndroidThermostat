@@ -104,7 +104,7 @@ public class Boiler implements Serializable {
             stopAndIncreaseTime();
             if (isOnVacation) {
                 this.targetTemperature = this.NIGHT_TEMPERATURE;
-                continue;
+
             }
 
             if (temperatureOverriding || isUseTimeTable == false) {
