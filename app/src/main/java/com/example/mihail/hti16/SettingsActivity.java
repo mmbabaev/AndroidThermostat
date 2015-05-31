@@ -25,6 +25,7 @@ public class SettingsActivity extends ActionBarActivity {
 
     SettingsActivity activity = this;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +106,8 @@ public class SettingsActivity extends ActionBarActivity {
                 finish();
             }
         });
+
+        dayEditText.requestFocus();
     }
 
     @Override

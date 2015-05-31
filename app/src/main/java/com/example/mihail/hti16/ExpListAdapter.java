@@ -129,7 +129,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
                     DayOfWeek day = DayOfWeek.of(pos);
                     ArrayList<DayOfWeek> ar= new ArrayList<DayOfWeek>();
                     ar.add(day);
-                    TimeTableShowerActivity.showAddTimeAlert(ar);
+                    TimeTableShowerActivity.showAddTimeAlert(ar, null);
 
                 }
 

@@ -83,7 +83,7 @@ public class DayChoseActivity extends ActionBarActivity {
         }
         Storage.chosenDays = result;
 
-        TimeTableShowerActivity.showAddTimeAlert(result);
+        TimeTableShowerActivity.showAddTimeAlert(result, this);
     }
 
 
