@@ -115,6 +115,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
         {
             textChild.setTextColor(Color.RED);
             textChild.setTextSize(20);
+            image.setVisibility(View.INVISIBLE);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -126,24 +127,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
 
 
-        textChild.setText(mGroups.get(groupPosition).get(childPosition));
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               button.setVisibility(View.VISIBLE);
 
-            }
-
-        });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // REMOVE ElEMENT
-
-                notifyDataSetChanged();
-                Toast.makeText(mContext, "button is pressed", Toast.LENGTH_LONG).show();
-            }
-        });
 
         return convertView;
     }
