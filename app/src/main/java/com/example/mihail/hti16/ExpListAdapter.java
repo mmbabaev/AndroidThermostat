@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mihail.hti16.Boiler.Boiler;
 import com.example.mihail.hti16.Boiler.DayOfWeek;
 import com.example.mihail.hti16.Boiler.Storage;
 
@@ -102,6 +103,9 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
         textChild.setText(mGroups.get(groupPosition).get(childPosition));
         if(childPosition+1 < this.getChildrenCount(groupPosition)) {
+            textChild.setTextColor(Color.BLACK);
+            textChild.setTextSize(12);
+            image.setVisibility(View.VISIBLE);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -123,6 +127,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
                     DayOfWeek day = DayOfWeek.of(pos);
                     TimeTableShowerActivity.showAddTimeAlert(day);
+
                 }
 
             });
@@ -135,6 +140,15 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    public void update() {
+        notifyDataSetChanged();
+    }
+
+
+    public void setNewContext(ArrayList<ArrayList<String>> cont) {
+        this.mGroups = cont;
+        this.notifyDataSetChanged();
+    }
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;

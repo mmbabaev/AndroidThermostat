@@ -2,6 +2,8 @@ package com.example.mihail.hti16.Boiler;
 
 import android.util.Log;
 
+import com.example.mihail.hti16.ExpListAdapter;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,6 +18,8 @@ public class Storage {
     public static Boiler boiler  = new Boiler(new Temperature(18.5), BoilerMode.TEST_MODE);
     public static String PACKAGE_NAME;
     public static String PATH;
+
+    public static ExpListAdapter adapter;
 
     public static Boiler getBoiler() {
         try {

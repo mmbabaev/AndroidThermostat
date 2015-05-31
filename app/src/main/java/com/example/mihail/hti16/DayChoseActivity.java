@@ -83,10 +83,9 @@ public class DayChoseActivity extends ActionBarActivity {
         }
         Storage.chosenDays = result;
 
-      //  Intent intent = new Intent(this, SettingsActivity.class);
-
-     //   startActivity(intent);
+ 
     }
+
 
 }
 

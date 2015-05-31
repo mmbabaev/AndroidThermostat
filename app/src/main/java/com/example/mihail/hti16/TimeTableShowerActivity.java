@@ -37,6 +37,7 @@ import java.util.ArrayList;
 public class TimeTableShowerActivity extends ActionBarActivity {
 
     static TimeTableShowerActivity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +47,8 @@ public class TimeTableShowerActivity extends ActionBarActivity {
 
         ExpandableListView listView = (ExpandableListView)findViewById(R.id.lvExp);
         ArrayList<ArrayList<String>> groups = Storage.boiler.timeTable.getGroups();
-        ExpListAdapter adapter = new ExpListAdapter(getApplicationContext(), groups);
-        listView.setAdapter(adapter);
+        Storage.adapter = new ExpListAdapter(getApplicationContext(), groups);
+        listView.setAdapter(Storage.adapter );
 
         final Switch switcher = (Switch)findViewById(R.id.switch3);
        switcher.setChecked(false);
@@ -116,20 +117,9 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         dpLeft.setValues(leftValues);
         dpRight.setValues(rightValues);
 
-        /*
-        horizontal1.addView(dpLeft);
-        horizontal1.addView(dpRight);
 
-        horizontal2.addView(dpRight2);
-        horizontal2.addView(dpLeft2);
-
-        LinearLayout vertical = new LinearLayout(activity);
-        vertical.addView(horizontal1);
-        vertical.addView(horizontal2);
-
-        */
         horizontal1.addView(new TimePicker(activity));
-      //  horizontal1.addView(new TimePicker(activity));
+
 
         horizontal2.addView(new TimePicker(activity));
         horizontal2.addView(new TimePicker(activity));
@@ -139,16 +129,7 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         LinearLayout vertical = new LinearLayout(activity);
         vertical.setOrientation(LinearLayout.HORIZONTAL);
         vertical.setLayoutParams(new RelativeLayout.LayoutParams(300, 500));
-      //  vertical.addView(horizontal1);
-      //  vertical.addView(horizontal2);
 
-        /*
-        TextView fromTextView = new TextView(activity);
-        fromTextView.setText("From:");
-
-        fromTextView.setGravity(Gravity.CENTER_VERTICAL);
-        vertical.addView(fromTextView);
-        */
 
         final TimePicker picker = new TimePicker(activity);
         picker.setIs24HourView(true);
@@ -176,6 +157,7 @@ public class TimeTableShowerActivity extends ActionBarActivity {
                 Time t2 = new Time(picker2.getCurrentHour(), picker2.getCurrentMinute(), 0);
 
                 Storage.boiler.timeTable.addSpan(day, t1, t2);
+                Storage.adapter.setNewContext(Storage.boiler.timeTable.getGroups());
             }
         })
 

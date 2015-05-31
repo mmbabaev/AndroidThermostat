@@ -10,7 +10,7 @@ import java.util.List;
 public class TimeTable implements Serializable {
     List<Day> week = new ArrayList<Day>();
 
-    boolean changed = false;
+    public boolean changed = false;
     public TimeTable() {
         for (int i = 0; i < 7; i++) {
             week.add(new Day(DayOfWeek.of(i+1)));

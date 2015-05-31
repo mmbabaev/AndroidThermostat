@@ -35,8 +35,8 @@ public class Boiler implements Serializable {
         this.mode = boilerMode;
         TimeTable table = new TimeTable();
 
-        table.addSpan(DayOfWeek.SATURDAY, correctTime(17, 0, 0), correctTime(17, 30, 30));
-        table.addSpan(DayOfWeek.SATURDAY, correctTime(17, 40, 0), correctTime(18, 00, 30));
+        table.addSpan(DayOfWeek.SUNDAY, correctTime(14, 0, 0), correctTime(14, 30, 30));
+        table.addSpan(DayOfWeek.SUNDAY, correctTime(17, 40, 0), correctTime(18, 00, 30));
 
         this.timeTable = table;
         int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
