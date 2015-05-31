@@ -36,20 +36,21 @@ import java.util.ArrayList;
 
 public class TimeTableShowerActivity extends ActionBarActivity {
 
-    static TimeTableShowerActivity activity;
+    static ActionBarActivity act;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_table_shower);
 
-        activity = this;
+
+        act = this;
 
         ExpandableListView listView = (ExpandableListView)findViewById(R.id.lvExp);
         ArrayList<ArrayList<String>> groups = Storage.boiler.timeTable.getGroups();
         Storage.adapter = new ExpListAdapter(getApplicationContext(), groups);
         listView.setAdapter(Storage.adapter );
-
+        
         final Switch switcher = (Switch)findViewById(R.id.switch3);
        switcher.setChecked(false);
         switcher.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +87,11 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void showAddTimeAlert(final ArrayList<DayOfWeek> days) {
+    public static void showAddTimeAlert(final ArrayList<DayOfWeek> days, ActionBarActivity activity ) {
+        if (activity == null) {
+            activity = act;
+        }
+
         LinearLayout horizontal1 = new LinearLayout(activity);
         LinearLayout horizontal2 = new LinearLayout(activity);
 
@@ -165,5 +170,11 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         .show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        Switch switcher = (Switch)findViewById(R.id.switch3);
+        switcher.setChecked(false);
+    }
 }
