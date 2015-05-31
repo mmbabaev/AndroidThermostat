@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.example.mihail.hti16.Boiler.DayOfWeek;
@@ -27,14 +29,17 @@ public class DayChoseActivity extends ActionBarActivity {
 
         final Switch switcher2 = (Switch)findViewById(R.id.switch4);
         switcher2.setChecked(true);
-        switcher2.setOnClickListener(new View.OnClickListener() {
+        switcher2.setOnCheckedChangeListener((new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                if (!switcher2.isChecked()) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (switcher2.isChecked() == false) {
                     finish();
                 }
             }
-        });
+        }
+        ));
+
+
     }
 
     @Override
@@ -85,7 +90,12 @@ public class DayChoseActivity extends ActionBarActivity {
         Storage.chosenDays = result;
 
         TimeTableShowerActivity.showAddTimeAlert(result, this);
+
     }
+
+
+
+
 
     @Override
     protected void onStop() {

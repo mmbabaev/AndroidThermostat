@@ -15,7 +15,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -50,20 +52,21 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         ExpandableListView listView = (ExpandableListView)findViewById(R.id.lvExp);
         ArrayList<ArrayList<String>> groups = Storage.boiler.timeTable.getGroups();
         Storage.adapter = new ExpListAdapter(getApplicationContext(), groups);
-        listView.setAdapter(Storage.adapter );
+        listView.setAdapter(Storage.adapter);
         
         final Switch switcher = (Switch)findViewById(R.id.switch3);
        switcher.setChecked(false);
-        switcher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        switcher.setOnCheckedChangeListener((new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (switcher.isChecked()) {
                     Intent intent = new Intent(TimeTableShowerActivity.this, DayChoseActivity.class);
 
                     startActivity(intent);
                 }
             }
-        });
+        }));
+
     }
 
     @Override
@@ -89,8 +92,13 @@ public class TimeTableShowerActivity extends ActionBarActivity {
     }
 
     public static void showAddTimeAlert(final ArrayList<DayOfWeek> days, ActionBarActivity activity ) {
+        boolean finishParent = false;
+
         if (activity == null) {
             activity = act;
+        }
+        else {
+            finishParent = true;
         }
 
         LinearLayout horizontal1 = new LinearLayout(activity);
@@ -150,6 +158,8 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         final TimePicker picker2 = new TimePicker(activity);
         picker2.setIs24HourView(true);
         vertical.addView(picker2);
+        final boolean finish = finishParent;
+        final ActionBarActivity act = activity;
 
         new AlertDialog.Builder(activity)
         .setTitle("Add")
@@ -165,6 +175,10 @@ public class TimeTableShowerActivity extends ActionBarActivity {
                             Storage.boiler.timeTable.addSpan(days.get(i), t1, t2);
                         }
                         Storage.adapter.setNewContext(Storage.boiler.timeTable.getGroups());
+
+                        if (finish) {
+                            act.finish();
+                        }
                     }
                 })
 

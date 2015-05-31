@@ -110,7 +110,7 @@ public class Boiler implements Serializable {
                 continue;
             }
 
-            if (temperatureOverriding) {
+            if (temperatureOverriding || isUseTimeTable == false) {
                 heating();
                 if (nextChange == null) {
                     nextChange = timeTable.getNextChangeTime(curDay, curTime);
@@ -122,6 +122,7 @@ public class Boiler implements Serializable {
                     }
                 }
             } else {
+
                 //Работа по расписанию
                 if (this.timeTable.getTemperatureMode(curDay, curTime)) {
                     this.targetTemperature = this.DAY_TEMPERATURE;
