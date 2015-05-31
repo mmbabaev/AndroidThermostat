@@ -96,7 +96,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
         TextView textChild = (TextView) convertView.findViewById(R.id.textChild);
         final  Button button = (Button)convertView.findViewById(R.id.buttonChild);
-
+        button.setVisibility(View.INVISIBLE);
         final ImageView image = (ImageView)convertView.findViewById(R.id.imageView);
         int id = convertView.getResources().getIdentifier("sun", "drawable", Storage.PACKAGE_NAME);
         image.setImageResource(id);
@@ -142,6 +142,7 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
                 Storage.boiler.timeTable.remove(groupPosition,childPosition);
                 ExpListAdapter.this.setNewContext(Storage.boiler.timeTable.getGroups());
                 button.setVisibility(View.INVISIBLE);
+                Toast.makeText(button.getContext(), "Interval delete", Toast.LENGTH_LONG);
             }
         });
 
@@ -152,7 +153,9 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    private void buttonsInvis() {
 
+    }
 
     public void setNewContext(ArrayList<ArrayList<String>> cont) {
         this.mGroups = cont;
