@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -176,5 +177,14 @@ public class TimeTableShowerActivity extends ActionBarActivity {
 
         Switch switcher = (Switch)findViewById(R.id.switch3);
         switcher.setChecked(false);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Log.d("MyLog", "onStop()");
+
+        Storage.saveBoiler();
     }
 }

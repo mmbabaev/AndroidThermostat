@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.acl.LastOwnerException;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -27,6 +28,16 @@ public class Storage {
             ObjectInputStream oin = new ObjectInputStream(fis);
             boiler = (Boiler) oin.readObject();
             Log.d("getBoiler",  "COMPLETE");
+
+            int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+            day--;
+            if (day == 0) {
+                day = 7;
+            }
+            boiler.curDay = DayOfWeek.of(day);
+
+            boiler.curTime = new Time(Calendar.getInstance().getTime());
+            
             return boiler;
         }
         catch (Exception e) {

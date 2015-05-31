@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -132,5 +133,12 @@ public class SettingsActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
 
+        Log.d("MyLog", "onStop()");
+
+        Storage.saveBoiler();
+    }
 }

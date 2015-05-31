@@ -197,6 +197,15 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+
+        Log.d("MyLog", "onDestroy()");
+
+        Storage.saveBoiler();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
 
