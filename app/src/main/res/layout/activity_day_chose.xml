@@ -49,7 +49,7 @@
             android:textSize="20dp"
             android:textStyle="normal"
             style="@style/AppTheme"
-            android:layout_marginTop="41dp"
+            android:layout_marginTop="10dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -152,6 +152,16 @@
             android:layout_alignLeft="@+id/checkBox6"
             android:layout_alignStart="@+id/checkBox6"
             android:layout_marginTop="4dp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set to many"
+            android:id="@+id/switch4"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/checkBox7"
+            android:layout_alignStart="@+id/checkBox7"
+            android:layout_marginBottom="5dp" />
 
     </RelativeLayout>
 </RelativeLayout>

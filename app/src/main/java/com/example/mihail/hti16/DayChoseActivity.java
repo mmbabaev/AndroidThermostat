@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Switch;
 
 import com.example.mihail.hti16.Boiler.DayOfWeek;
 import com.example.mihail.hti16.Boiler.Storage;
@@ -21,6 +22,19 @@ public class DayChoseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day_chose);
+
+        final Switch switcher2 = (Switch)findViewById(R.id.switch4);
+        switcher2.setChecked(true);
+        switcher2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!switcher2.isChecked()) {
+                    Intent intent = new Intent(DayChoseActivity.this, TimeTableShowerActivity.class);
+
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
