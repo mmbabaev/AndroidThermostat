@@ -25,6 +25,8 @@ public class DayChoseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        setTitle("Choose days");
         setContentView(R.layout.activity_day_chose);
 
         final Switch switcher2 = (Switch)findViewById(R.id.switch4);

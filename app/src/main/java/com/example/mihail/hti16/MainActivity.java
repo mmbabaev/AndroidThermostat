@@ -43,6 +43,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle("Main menu");
         currentTemperatureTextView = (TextView)findViewById(R.id.textView);
         topImage = (ImageView)findViewById(R.id.topImage);
 
@@ -147,6 +148,7 @@ public class MainActivity extends ActionBarActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+
                     TextView time = (TextView)findViewById(R.id.timeText);
                     String s = boiler.curTime.getHours() + ":";
                     if (boiler.curTime.getMinutes() <= 9) {

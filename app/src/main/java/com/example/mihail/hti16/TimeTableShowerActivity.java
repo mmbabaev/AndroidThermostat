@@ -49,6 +49,8 @@ public class TimeTableShowerActivity extends ActionBarActivity {
 
         act = this;
 
+
+        setTitle("Timetable");
         ExpandableListView listView = (ExpandableListView)findViewById(R.id.lvExp);
         ArrayList<ArrayList<String>> groups = Storage.boiler.timeTable.getGroups();
         Storage.adapter = new ExpListAdapter(getApplicationContext(), groups);

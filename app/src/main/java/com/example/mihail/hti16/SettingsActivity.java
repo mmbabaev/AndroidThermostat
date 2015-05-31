@@ -32,6 +32,8 @@ public class SettingsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        setTitle("Settings");
+
         dayEditText = (EditText)findViewById(R.id.dayEditText);
         nightEditText = (EditText)findViewById(R.id.nightEditText);
         timeTableSwitch = (Switch)findViewById(R.id.switch2);
