@@ -86,6 +86,7 @@ public class Day {
         for (int i = 0; i < spans.size(); i++) {
             res.add(spans.get(i).toString());
         }
+        res.add("Add new interval...");
         return res;
     }
 

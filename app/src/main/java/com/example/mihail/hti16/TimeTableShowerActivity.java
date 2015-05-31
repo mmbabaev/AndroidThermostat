@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.Switch;
 
 import com.example.mihail.hti16.Boiler.Boiler;
@@ -43,7 +44,6 @@ public class TimeTableShowerActivity extends ActionBarActivity {
                 }
             }
         });
-        int imageView = R.id.imageView;
     }
 
     @Override

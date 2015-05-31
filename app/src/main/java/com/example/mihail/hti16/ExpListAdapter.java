@@ -1,6 +1,7 @@
 package com.example.mihail.hti16;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,16 +93,28 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
         TextView textChild = (TextView) convertView.findViewById(R.id.textChild);
         final  Button button = (Button)convertView.findViewById(R.id.buttonChild);
-        
-
         textChild.setText(mGroups.get(groupPosition).get(childPosition));
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               button.setVisibility(View.VISIBLE);
-            }
+        if(childPosition+1 < this.getChildrenCount(groupPosition)) {
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    button.setVisibility(View.VISIBLE);
+                }
 
-        });
+            });
+        }
+        else
+        {
+            textChild.setTextColor(Color.RED);
+            textChild.setTextSize(20);
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   Toast.makeText(mContext,"ADD WILL BE INPLEMENTER",Toast.LENGTH_LONG).show();
+                }
+
+            });
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
