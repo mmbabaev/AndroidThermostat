@@ -35,7 +35,7 @@ public class TimeSpan implements Comparable, Serializable {
             return true;
         }
 
-        if(this.start.compareTo(other.start)>=0 && this.end.compareTo(other.end) <= 0 && other.end.compareTo(this.end) >= 0) {
+        if(this.start.compareTo(other.start)>=0 && this.end.compareTo(other.end) <= 0) {
             this.start = other.start;
             this.end = other.end;
             return true;
