@@ -175,6 +175,11 @@ public class MainActivity extends ActionBarActivity {
                         }
                     }
                     else {
+
+                        topImage.setVisibility(View.INVISIBLE);
+                    }
+
+                    if (boiler.isUseTimeTable == false && boiler.isOnVacation == false) {
                         topImage.setVisibility(View.INVISIBLE);
                     }
 
