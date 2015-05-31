@@ -36,14 +36,14 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         switcher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(switcher.isChecked()) {
+                if (switcher.isChecked()) {
                     Intent intent = new Intent(TimeTableShowerActivity.this, DayChoseActivity.class);
 
                     startActivity(intent);
                 }
             }
         });
-
+        int imageView = R.id.imageView;
     }
 
     @Override
