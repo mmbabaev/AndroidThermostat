@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mihail.hti16.Boiler.DayOfWeek;
+import com.example.mihail.hti16.Boiler.Storage;
 
 import java.util.ArrayList;
 
@@ -93,13 +94,19 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
         TextView textChild = (TextView) convertView.findViewById(R.id.textChild);
         final  Button button = (Button)convertView.findViewById(R.id.buttonChild);
-<<<<<<< Updated upstream
+
+        final ImageView image = (ImageView)convertView.findViewById(R.id.imageView);
+        int id = convertView.getResources().getIdentifier("sun", "drawable", Storage.PACKAGE_NAME);
+        image.setImageResource(id);
+
+
         textChild.setText(mGroups.get(groupPosition).get(childPosition));
         if(childPosition+1 < this.getChildrenCount(groupPosition)) {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     button.setVisibility(View.VISIBLE);
+                    image.setVisibility(View.INVISIBLE);
                 }
 
             });
@@ -116,7 +123,6 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
 
             });
         }
-=======
 
 
 
@@ -129,8 +135,6 @@ public class ExpListAdapter extends BaseExpandableListAdapter {
             }
 
         });
->>>>>>> Stashed changes
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

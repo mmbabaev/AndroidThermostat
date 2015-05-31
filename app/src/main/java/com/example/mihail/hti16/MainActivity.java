@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
         currentTemperatureTextView = (TextView)findViewById(R.id.textView);
         topImage = (ImageView)findViewById(R.id.topImage);
 
-
+        Storage.PACKAGE_NAME = getPackageName();
         final Boiler boiler = Storage.boiler;
 
         Thread thread = new Thread(new Runnable() {
