@@ -50,6 +50,7 @@ public class MainActivity extends ActionBarActivity {
         Storage.PATH = getApplicationContext().getFilesDir().getAbsolutePath();
         Storage.PACKAGE_NAME = getPackageName();
 
+        Storage.loadSerializzationBoiler();
         final Boiler boiler = Storage.boiler;
 
 
@@ -207,6 +208,11 @@ public class MainActivity extends ActionBarActivity {
 
                     if (boiler.isUseTimeTable == false && boiler.isOnVacation == false) {
                         topImage.setVisibility(View.INVISIBLE);
+                    }
+                    else {
+                        if (boiler.temperatureOverriding == false) {
+                            topImage.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     currentTemperatureTextView.setText(boiler.getCurrentTemperature().toString() + " °C");

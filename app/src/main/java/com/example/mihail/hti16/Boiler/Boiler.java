@@ -99,7 +99,7 @@ public class Boiler implements Serializable {
     }
 
 
-    private void work() throws InterruptedException {
+    public void work() throws InterruptedException {
         while (this.working) {
             stopAndIncreaseTime();
             if (isOnVacation) {

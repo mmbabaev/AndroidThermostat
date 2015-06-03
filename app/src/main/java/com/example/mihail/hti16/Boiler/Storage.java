@@ -22,7 +22,9 @@ public class Storage {
 
     public static ExpListAdapter adapter;
 
-    public static Boiler getBoiler() {
+
+
+    public static void loadSerializzationBoiler() {
         try {
             FileInputStream fis = new FileInputStream(PATH + "/boiler.out");
             ObjectInputStream oin = new ObjectInputStream(fis);
@@ -37,12 +39,22 @@ public class Storage {
             boiler.curDay = DayOfWeek.of(day);
 
             boiler.curTime = new Time(Calendar.getInstance().getTime());
-            
-            return boiler;
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        boiler.work();
+                    } catch (InterruptedException e) {
+
+                    }
+                }
+            });
+            thread.start();
+
         }
         catch (Exception e) {
             Log.d("getBoiler",  "ERROR" + e.getLocalizedMessage());
-            return boiler;
         }
     }
 
