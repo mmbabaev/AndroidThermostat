@@ -143,7 +143,6 @@ public class MainActivity extends ActionBarActivity {
 
     public void listenTemp(final Boiler boiler) throws InterruptedException {
         while (boiler.working) {
-            Thread.sleep(1000);
             //System.out.println("Current temperature  " + boiler.getCurrentTemperature() + "  current Time " +  boiler.curTime.toString() + "   current day   " + boiler.curDay + " current mode: " + boiler.isDayTemperature());
             runOnUiThread(new Runnable() {
                 @Override
@@ -212,6 +211,7 @@ public class MainActivity extends ActionBarActivity {
                     currentTemperatureTextView.setText(boiler.getCurrentTemperature().toString() + " °C");
                 }
             });
+            Thread.sleep(30);
         }
     }
 
