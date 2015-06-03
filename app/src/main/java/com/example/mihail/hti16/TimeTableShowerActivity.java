@@ -144,7 +144,7 @@ public class TimeTableShowerActivity extends ActionBarActivity {
 
         LinearLayout vertical = new LinearLayout(activity);
         vertical.setOrientation(LinearLayout.HORIZONTAL);
-        vertical.setLayoutParams(new RelativeLayout.LayoutParams(300, 500));
+       // vertical.setLayoutParams(new RelativeLayout.LayoutParams(300, 500));
 
 
         final TimePicker picker = new TimePicker(activity);
@@ -179,6 +179,8 @@ public class TimeTableShowerActivity extends ActionBarActivity {
 
                         Time t1 = new Time(picker.getCurrentHour(), picker.getCurrentMinute(), 0);
                         Time t2 = new Time(picker2.getCurrentHour(), picker2.getCurrentMinute(), 0);
+
+
                         for (int i = 0; i < days.size(); i++) {
                             Storage.boiler.timeTable.addSpan(days.get(i), t1, t2);
                         }
