@@ -152,7 +152,7 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         vertical.addView(picker);
 
         TextView toTextView = new TextView(activity);
-        toTextView.setText("-");
+        toTextView.setText("");
 
         toTextView.setGravity(Gravity.CENTER_VERTICAL);
         vertical.addView(toTextView);
@@ -164,9 +164,15 @@ public class TimeTableShowerActivity extends ActionBarActivity {
         final ActionBarActivity act = activity;
 
         new AlertDialog.Builder(activity)
-        .setTitle("Add")
+        .setTitle("Add time interval")
         .setView(vertical)
         .setCancelable(true)
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                })
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int id) {
